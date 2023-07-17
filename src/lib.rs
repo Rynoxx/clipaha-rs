@@ -65,7 +65,7 @@ impl Strength {
 }
 
 impl TryFrom<&str> for Strength {
-    type Error = &'static str;
+    type Error = String;
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
         let lowercase_value = value.to_lowercase();
@@ -80,12 +80,12 @@ impl TryFrom<&str> for Strength {
             return Ok(Self::Ultra);
         }
 
-        Err("Unrecognized strength specified, must be one of: low, medium, high, ultra")
+        Err("Unrecognized strength specified, must be one of: low, medium, high, ultra".into())
     }
 }
 
 impl TryFrom<String> for Strength {
-    type Error = &'static str;
+    type Error = String;
 
     fn try_from(value: String) -> Result<Self, Self::Error> {
         Self::try_from(value.as_str())
